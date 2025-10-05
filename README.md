@@ -1,50 +1,218 @@
 # Notion Template Generator
 
-A comprehensive Python automation tool for programmatically creating complete Notion systems via the Notion API. Supports **all 30+ Notion block types** including text, lists, media (images/video/audio), tables, columns, equations, embeds, and more!
+> A comprehensive Python toolkit for building complete Notion systems programmatically using the Notion API 2025-09-03
 
-**✨ NEW:** Complete block type implementation with full API parity! [See all block types →](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)
-
-## 🆕 New: Multi-Format Update Generator
-
-Transform your weekly notes into professional updates across 4 formats automatically:
-- **📄 Detailed Document** - Comprehensive stakeholder reports
-- **💬 Slack Update** - Concise team updates
-- **🔗 LinkedIn Post** - Engaging public updates
-- **📝 Blog Post** - SEO-friendly long-form content
-
-```bash
-# Fill out the template
-cp update_template.json my_update.json
-
-# Generate all formats
-python update_generator.py my_update.json
-```
-
-**[📖 Full Documentation](UPDATE_SYSTEM_README.md)**
+[![Notion API](https://img.shields.io/badge/Notion%20API-2025--09--03-black)](https://developers.notion.com)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
+[![Block Types](https://img.shields.io/badge/Block%20Types-30%2B-green)](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)
 
 ---
 
-## 🤖 New: MCP Server for AI Assistants
+## 🎯 What We've Built
 
-This project now includes a **Model Context Protocol (MCP) server** that enables AI assistants like Claude Desktop to access all project knowledge and capabilities!
+This project provides **three powerful components** for working with Notion:
 
-**What is MCP?** An open standard by Anthropic that connects AI assistants to external tools and data sources.
+### 1. 🎨 Complete Block Type Library (30+ Types)
 
-### Quick Setup
+A production-ready Python library supporting **all creatable Notion block types** with full API parity:
+
+**Text & Lists (11 types)**
+- Headings (3 levels, toggleable), Paragraphs, Quotes, Callouts, Code blocks
+- Bulleted/Numbered lists, To-dos, Toggles, Table of Contents
+
+**Media & Files (6 types)**
+- Images, Videos, Audio, PDFs, Files, Embeds
+
+**Advanced Layouts (8 types)**
+- Tables with rows/columns, Multi-column layouts (column lists & columns)
+- LaTeX Equations, Synced blocks, Dividers, Breadcrumbs, Bookmarks
+
+```python
+from notion_api_client import heading_1, image, callout, table, equation, column_list, column
+
+# Create rich content with any block type
+blocks = [
+    heading_1("My Project", is_toggleable=True),
+    image("https://example.com/photo.jpg", caption="Screenshot"),
+    callout("Important!", icon="💡", color="blue_background"),
+    equation("e=mc^2"),
+    table(table_width=3, has_column_header=True)
+]
+```
+
+**[📖 See All 30+ Block Types →](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)**
+
+---
+
+### 2. 📦 Ready-to-Deploy Notion Systems
+
+Two complete, production-ready Notion systems that you can deploy instantly:
+
+#### **AI Product Manager OS** (4 Databases)
+- 🎯 Opportunity Hub - Track and evaluate opportunities
+- 📋 AI Product Spec Generator - Create product specs
+- 🧪 Experiment Tracker - Monitor experiments
+- 🚀 Launch & Growth Hub - Manage launches
+
+#### **LinkedIn Content OS** ⭐ (12 Pages, 5 Databases)
+- 🎨 Dashboard - Beautiful cover page
+- 📚 5-Day Onboarding - Guided setup journey
+- 📝 Content Hub - Full post workflow
+- 🎯 Content Pillars - Strategic planning
+- 🎤 Voice Discovery - Find your voice
+- 💡 Prompt Library - 25+ AI prompts
+- 📊 Weekly Review - Analytics tracking
+
+**Total: 300+ rich content blocks across 12 pages and 5 databases!**
+
+---
+
+### 3. 🤖 MCP Server for AI Assistants
+
+A Model Context Protocol (MCP) server that connects AI assistants like Claude to your Notion workspace:
+
+**12 Knowledge Prompts** - Complete project documentation
+- System guides, API references, block type examples
+- Best practices and implementation patterns
+
+**15 Callable Tools** - Powerful operations
+- Notion database and page operations
+- Database analysis and enhancement
+- Multi-format update generation
+- Web research capabilities
+
+**[📖 MCP Server Documentation →](./docs/mcp/MCP_SERVER_README.md)**
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Python 3.8 or higher
+- A Notion account with workspace owner permissions
+- A Notion Integration (Internal) with API access
+
+### Installation
+
+```bash
+# 1. Clone or navigate to the directory
+cd notion_template_generator
+
+# 2. Run automated setup (creates venv, installs dependencies)
+./setup.sh
+
+# Or manual setup:
+python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Configuration
+
+1. **Create a Notion Integration**
+   - Go to https://www.notion.com/my-integrations
+   - Click "New integration"
+   - Name it (e.g., "Template Generator")
+   - Copy the Integration Secret
+
+2. **Configure Environment Variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add:
+   # NOTION_API_KEY=your_integration_secret
+   # NOTION_PARENT_PAGE_ID=your_page_id
+   ```
+
+3. **Share a Notion Page with Your Integration**
+   - Open a Notion page
+   - Click "Share" → Invite your integration
+   - Copy the page ID from the URL
+
+---
+
+## 💻 Usage Examples
+
+### Create Complete Notion Systems
+
+```bash
+# Activate virtual environment
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Deploy LinkedIn Content OS (Full system - RECOMMENDED)
+python scripts/generators/linkedin_content_os_complete.py
+
+# Deploy AI Product Manager OS
+python scripts/generators/main.py
+
+# Deploy LinkedIn Content OS (Basic - 3 databases only)
+python scripts/generators/linkedin_content_os.py
+```
+
+### Use the Block Type Library
+
+```python
+from notion_api_client import (
+    NotionTemplateClient,
+    heading_1, heading_2, paragraph, callout,
+    bullet_list_item, to_do, code, image, table
+)
+
+# Initialize client
+client = NotionTemplateClient()
+
+# Build rich content
+page_blocks = [
+    # Text blocks
+    heading_1("Project Documentation"),
+    paragraph("Welcome to our comprehensive guide."),
+    callout("Key insight!", icon="💡", color="yellow_background"),
+    
+    # Lists
+    heading_2("Features"),
+    bullet_list_item("Fast and reliable"),
+    bullet_list_item("Easy to use"),
+    to_do("Complete setup", checked=True),
+    
+    # Media
+    image("https://example.com/diagram.png", caption="Architecture"),
+    
+    # Code
+    code(
+        "from notion_api_client import NotionTemplateClient\n"
+        "client = NotionTemplateClient()",
+        language="python"
+    )
+]
+
+# Create page
+page = client.create_page(
+    parent_id=database_id,
+    title="Getting Started",
+    children=page_blocks
+)
+```
+
+### Generate Multi-Format Updates
+
+```bash
+# Fill out the template
+cp templates/update_template.json my_update.json
+# Edit my_update.json with your project data
+
+# Generate all formats (Document, Slack, LinkedIn, Blog)
+python scripts/utilities/update_generator.py my_update.json
+```
+
+**[📖 Update System Guide →](./docs/guides/UPDATE_SYSTEM_README.md)**
+
+### Use the MCP Server with Claude Desktop
 
 ```bash
 # Install MCP dependencies
 pip install -r requirements_mcp.txt
 
-# Run the server
-python mcp_server.py
-```
-
-### Connect to Claude Desktop
-
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
-
-```json
+# Add to Claude Desktop config (~/.../claude_desktop_config.json):
 {
   "mcpServers": {
     "notion-template-generator": {
@@ -57,371 +225,342 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
     }
   }
 }
+
+# Restart Claude Desktop and start using Notion tools!
 ```
 
-### Capabilities
-
-- **12 Prompts** - Complete project knowledge base
-- **15 Tools** - Notion operations, database analysis, update generation, web research
-
-**[📖 Full MCP Documentation](MCP_SERVER_README.md)** | **[🔗 MCP Resources](MCP_RESOURCES.md)**
+**[📖 Full MCP Setup Guide →](./docs/mcp/MCP_SERVER_README.md)**
 
 ---
-
-## 🎯 What This Creates
-
-This generator creates two complete Notion systems:
-
-### 1. **AI Product Manager OS** (4 databases)
-- **🎯 Opportunity Hub**: Track and evaluate product opportunities
-- **📋 AI Product Spec Generator**: Create AI-powered product specifications
-- **🧪 Experiment Tracker**: Monitor experiments and metrics
-- **🚀 Launch & Growth Hub**: Manage launches and growth initiatives
-
-### 2. **LinkedIn Content OS** (Complete Product Bundle) ⭐
-- **🎨 Dashboard**: Beautiful cover page with navigation
-- **📚 5-Day Onboarding**: Guided setup (Days 1-5 as separate pages)
-- **📝 Content Hub**: Manage posts from idea to publish
-- **🎯 Content Pillars**: Define your 3-5 core topics
-- **🎤 Voice Discovery**: Interactive worksheet to find your voice
-- **💡 Prompt Library**: 25+ ready-to-use AI prompts
-- **📊 Weekly Review**: Track analytics and growth
-
-**Total**: 12 pages, 5 databases, 300+ rich content blocks created!
-
-## 🎨 Complete Block Type Support
-
-Create rich Notion pages with **all 30+ block types**:
-
-### Text & Lists
-- Headings (3 levels, toggleable), Paragraphs, Quotes, Callouts
-- Bulleted/Numbered lists, To-dos, Toggles
-
-### Media & Files
-- Images, Videos, Audio, PDFs, Files
-- Bookmarks, Embeds
-
-### Advanced
-- Tables with rows/columns, Multi-column layouts
-- LaTeX Equations, Synced blocks
-- Table of Contents, Dividers, Breadcrumbs
-
-**[📖 Complete Block Types Reference →](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)**
-
-Example usage:
-```python
-from notion_api_client import heading_1, image, callout, table, code
-
-blocks = [
-    heading_1("My Project"),
-    image("https://example.com/photo.jpg", caption="Screenshot"),
-    callout("Important note!", icon="💡", color="blue_background"),
-    code("print('Hello!')", language="python")
-]
-
-client.append_blocks(page_id, blocks)
-```
-
-## 📋 Prerequisites
-
-- Python 3.8 or higher
-- A Notion account with workspace owner permissions
-- A Notion Integration (Internal) with API access
-
-## 🆕 Latest Updates
-
-**October 5, 2025**: Upgraded to **Notion API version 2025-09-03**
-- ✅ Full support for multi-source databases
-- ✅ Enhanced data source operations
-- ✅ Backward compatible client wrapper
-- ✅ All operations automatically handle data source IDs
-
-See [API_MIGRATION_2025-09-03.md](API_MIGRATION_2025-09-03.md) for details.
-
-## 🔧 Setup
-
-### 1. Clone or Navigate to This Directory
-
-```bash
-cd "notion_template_generator"
-```
-
-### 2. Create a Virtual Environment
-
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure Environment Variables
-
-Create a `.env` file in the project root:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your Notion credentials:
-- **NOTION_API_KEY**: Your Notion Integration Secret (from https://www.notion.com/my-integrations)
-- **NOTION_PARENT_PAGE_ID**: The ID of the parent page where templates will be created
-
-### 5. Get Your Notion Integration Secret
-
-1. Go to https://www.notion.com/my-integrations
-2. Click **"+ New integration"**
-3. Give it a name (e.g., "Template Generator")
-4. Select your workspace
-5. Click **"Submit"**
-6. Copy the **"Internal Integration Secret"** and paste it into your `.env` file
-
-### 6. Share Your Parent Page with the Integration
-
-1. Open the Notion page where you want to create templates
-2. Click **"Share"** in the top right
-3. Invite your integration by name
-4. Copy the page ID from the URL and add it to your `.env` file
-
-**Example URL**: `https://www.notion.so/My-Workspace-abc123def456`  
-**Page ID**: `abc123def456`
-
-## 🚀 Usage
-
-### Quick Start (Automated Setup)
-
-```bash
-./setup.sh
-```
-
-This will create a virtual environment and install all dependencies automatically.
-
-### Create LinkedIn Content OS (Recommended) ⭐
-
-```bash
-source venv/bin/activate
-python linkedin_content_os_complete.py
-```
-
-This creates the **complete LinkedIn Content OS** with:
-- Dashboard cover page
-- 5-day guided onboarding
-- All 5 core databases
-- Comprehensive examples throughout
-
-### Create AI Product Manager OS
-
-```bash
-source venv/bin/activate
-python main.py
-```
-
-This creates the **AI PM OS** with 4 databases showcasing product management workflows.
-
-### Create LinkedIn Content OS (Basic Version)
-
-```bash
-source venv/bin/activate
-python linkedin_content_os.py
-```
-
-This creates just the 3 core databases without onboarding.
 
 ## 📁 Project Structure
 
 ```
 notion_template_generator/
+├── 📘 Core Library
+│   ├── notion_api_client.py          # 27 block type helpers + API wrapper
+│   ├── mcp_server.py                 # MCP server for AI assistants
+│   └── requirements.txt              # Python dependencies
 │
-├── 🐍 PYTHON SCRIPTS
-│   ├── main.py                               # AI PM OS generator (4 databases)
-│   ├── linkedin_content_os.py                # LinkedIn basic (3 databases)
-│   ├── linkedin_content_os_complete.py       # LinkedIn FULL system (12 pages) ⭐
-│   └── notion_api_client.py                  # Core API wrapper (15 block types)
+├── 🐍 Scripts (Organized by Purpose)
+│   ├── generators/                   # Template generators
+│   │   ├── linkedin_content_os_complete.py  # Full LinkedIn system ⭐
+│   │   ├── main.py                   # AI PM OS (4 databases)
+│   │   └── linkedin_content_os.py    # LinkedIn basic (3 databases)
+│   ├── enhancements/                 # Database enhancement tools
+│   │   ├── notion_enhancer.py        # Advanced analyzer & enhancer
+│   │   └── apply_enhancements_fixed.py  # Batch enhancement tool
+│   └── utilities/                    # Helper scripts
+│       ├── update_generator.py       # Multi-format updates
+│       ├── test_retrieve_structure.py
+│       └── export_all_linkedin_databases.py
 │
-├── 📄 JSON TEMPLATES
-│   └── templates/
-│       ├── opportunity_hub.json              # Opportunity tracking schema
-│       ├── ai_product_spec.json              # Product spec schema
-│       ├── experiment_tracker.json           # Experiment schema
-│       └── launch_hub.json                   # Launch management schema
+├── 📚 Documentation (Comprehensive Guides)
+│   ├── guides/                       # Implementation guides
+│   │   ├── COMPLETE_BLOCK_TYPES_REFERENCE.md  # All 30+ block types ⭐
+│   │   ├── API_MIGRATION_2025-09-03.md
+│   │   ├── ALL_BLOCK_TYPES_SHOWCASE.md
+│   │   ├── COMPLETE_SYSTEM_GUIDE.md
+│   │   ├── CONTENT_GUIDE.md
+│   │   ├── LINKEDIN_CONTENT_OS_GUIDE.md
+│   │   ├── UPDATE_SYSTEM_README.md
+│   │   └── README.md                 # Guide navigation
+│   ├── mcp/                          # MCP server docs
+│   │   ├── MCP_SERVER_README.md      # Complete MCP guide
+│   │   ├── MCP_RESOURCES.md          # External resources
+│   │   └── MCP_CONVERSION_COMPLETE.md
+│   ├── agents/                       # AI assistant rules
+│   │   └── AGENTS.md
+│   ├── sessions/                     # Session summaries
+│   └── updates/                      # Generated update examples
 │
-├── 📚 DOCUMENTATION
-│   ├── README.md                             # This file
-│   ├── QUICKSTART.md                         # Quick start guide
-│   ├── ALL_BLOCK_TYPES_SHOWCASE.md           # All 15 block types explained
-│   ├── CONTENT_GUIDE.md                      # Content breakdown
-│   ├── LINKEDIN_CONTENT_OS_GUIDE.md          # LinkedIn system guide
-│   ├── COMPLETE_SYSTEM_GUIDE.md              # Full system overview
-│   ├── SUCCESS.md                            # Success stories
-│   └── FINAL_RESULT.md                       # Results documentation
+├── 🗂️ MCP Components
+│   ├── prompts/                      # 12 knowledge base documents
+│   │   ├── agents.prompt
+│   │   ├── api_migration.prompt
+│   │   ├── complete_system_guide.prompt
+│   │   └── ... (9 more)
+│   └── tools/                        # 15 callable tools
+│       ├── notion_tool.py            # Notion operations
+│       ├── research_tool.py          # Web research
+│       ├── update_tool.py            # Update generation
+│       └── database_tool.py          # Database analysis
 │
-├── ⚙️ SETUP FILES
-│   ├── requirements.txt                      # Python dependencies
-│   ├── setup.sh                              # Auto-setup script
-│   └── .gitignore                            # Git ignore rules
+├── 📦 Data & Templates
+│   ├── data/                         # JSON exports and reports
+│   └── templates/                    # JSON templates
 │
-└── 🔐 CONFIG (Protected - not tracked)
-    ├── .env                                  # Your API credentials
-    └── venv/                                 # Python virtual environment
+├── 📄 Root Documentation
+│   ├── README.md                     # This file
+│   ├── QUICKSTART.md                 # Quick reference
+│   ├── PROJECT_STRUCTURE.md          # Detailed structure
+│   ├── NOTION_API_COMPLETE_IMPLEMENTATION.md  # API implementation
+│   ├── COMPLETION_SUMMARY.md         # Task summary
+│   └── REORGANIZATION_SUMMARY.md     # File organization
+│
+└── ⚙️ Configuration
+    ├── .env                          # Your credentials (not tracked)
+    ├── .env.example                  # Template for .env
+    ├── requirements.txt              # Main dependencies
+    ├── requirements_mcp.txt          # MCP dependencies
+    └── setup.sh                      # Automated setup script
 ```
-
-### What Each Script Does
-
-| Script | Purpose | Creates |
-|--------|---------|---------|
-| `linkedin_content_os_complete.py` | **Full LinkedIn system** ⭐ | 1 dashboard + 5 onboarding pages + 5 databases |
-| `main.py` | AI Product Manager OS | 4 databases with comprehensive examples |
-| `linkedin_content_os.py` | LinkedIn basic | 3 core databases |
-| `notion_api_client.py` | API wrapper & helpers | 15 block type functions |
-
-## ✨ Features
-
-### All 15 Notion Block Types Supported
-- ✅ **Headings** (1, 2, 3) with colors and toggle capability
-- ✅ **Paragraphs** with color options
-- ✅ **Bulleted Lists** with colors
-- ✅ **Numbered Lists** with colors
-- ✅ **To-Do Checkboxes** (checked/unchecked)
-- ✅ **Toggle Blocks** (collapsible sections)
-- ✅ **Callouts** with custom icons and colors
-- ✅ **Quotes** for testimonials and emphasis
-- ✅ **Code Blocks** with 50+ language syntax highlighting
-- ✅ **Table of Contents** (auto-generated navigation)
-- ✅ **Bookmarks** (link previews)
-- ✅ **Dividers** (section separators)
-
-### Rich Content Features
-- 20 color options (including backgrounds)
-- Custom emoji icons for callouts
-- Interactive checkboxes and toggles
-- Syntax-highlighted code examples
-- Comprehensive examples in every database
-
-### Production-Ready Systems
-- Not just empty templates - every database has detailed examples
-- Step-by-step workflows built-in
-- Best practices and pro tips throughout
-- Ready to use immediately or sell as products
-
-## 📊 By The Numbers
-
-### LinkedIn Content OS Complete:
-- **12 pages** (1 dashboard + 5 onboarding + 6 database samples)
-- **5 databases** (Hub, Pillars, Voice, Prompts, Review)
-- **300+ rich content blocks**
-- **All 15 block types** demonstrated
-
-### AI Product Manager OS:
-- **4 databases** (Opportunity, Spec, Experiment, Launch)
-- **4 comprehensive samples**
-- **150+ rich content blocks**
-- **12 block types** used
-
-## 🔐 Security Best Practices
-
-- **Never commit** your `.env` file to version control
-- Keep your Notion API key secure and rotate it if exposed
-- Use workspace-specific integrations (not shared across workspaces)
-- Review integration permissions regularly
-
-## 🎯 Example Output
-
-When you run `linkedin_content_os_complete.py`, you get:
-
-### Dashboard Page
-```
-🚀 LinkedIn Content OS - Welcome
-├── Hero section with product overview
-├── System features (all 6 modules)
-├── "Start Here" guide
-├── Quick navigation links
-├── Before/After transformation
-├── Pro tips with callouts
-└── FAQ with toggles
-```
-
-### 5-Day Onboarding
-```
-📚 Day 1: Foundation → Define your LinkedIn goal
-📚 Day 2: Voice Discovery → Find your authentic voice
-📚 Day 3: Content Pillars → Choose 3-5 core topics
-📚 Day 4: First Post → Write and structure content
-📚 Day 5: Launch & Rhythm → Publish and build habits
-```
-
-### Core Databases
-```
-📝 Content Hub → Full post workflow (60+ blocks)
-🎯 Content Pillars → Strategic planning (35+ blocks)
-🎤 Voice Discovery → 6-section worksheet (50+ blocks)
-💡 Prompt Library → AI prompts with examples (25+ blocks)
-📊 Weekly Review → Analytics template (40+ blocks)
-```
-
-## 📚 Documentation
-
-### User Guides
-- **COMPLETE_SYSTEM_GUIDE.md** - Overview of the LinkedIn Content OS
-- **ALL_BLOCK_TYPES_SHOWCASE.md** - Learn about all 15 block types
-- **LINKEDIN_CONTENT_OS_GUIDE.md** - Detailed usage guide
-- **QUICKSTART.md** - Quick reference
-
-### Developer Guides
-- **AGENTS.md** - 🤖 AI Assistant rules, commands, and patterns
-- **API_MIGRATION_2025-09-03.md** - API upgrade documentation
-- **README.md** - This file
-
-## 🚀 Use Cases
-
-### Personal Use
-- Build your own LinkedIn presence
-- Manage product development workflows
-- Track experiments and launches
-- Organize content creation
-
-### As a Product
-- The LinkedIn Content OS is a complete deliverable
-- Ready to sell on Gumroad or similar platforms
-- All examples included - no assembly required
-- Professional quality with best practices built-in
-
-## 📚 API Resources
-
-- [Notion API Documentation](https://developers.notion.com/)
-- [Notion SDK for Python](https://github.com/ramnes/notion-sdk-py)
-- [Working with Databases](https://developers.notion.com/docs/working-with-databases)
-- [Working with Page Content](https://developers.notion.com/docs/working-with-page-content)
-- [Block Reference](https://developers.notion.com/reference/block)
-
-## 🤝 Contributing
-
-This is a personal automation project, but feel free to fork and adapt it for your own use cases.
-
-## 📝 License
-
-MIT License - feel free to use this as a template for your own Notion automation projects.
 
 ---
 
-## 🎉 Quick Start
+## 🎨 What You Can Build
+
+### 📄 Rich Documentation Pages
+
+```python
+blocks = [
+    table_of_contents(),
+    heading_1("Documentation"),
+    callout("Quick start guide", icon="🚀"),
+    code("npm install", language="bash"),
+    image("https://example.com/architecture.png"),
+    table(table_width=3, has_column_header=True)
+]
+```
+
+### 🎬 Media-Rich Galleries
+
+```python
+blocks = [
+    heading_1("Project Gallery"),
+    video("https://youtube.com/watch?v=demo"),
+    image("https://example.com/screenshot1.png", caption="Feature A"),
+    audio("https://example.com/podcast.mp3", caption="Episode 1"),
+    pdf("https://example.com/whitepaper.pdf", caption="Research")
+]
+```
+
+### 📊 Complex Data Layouts
+
+```python
+# Multi-column layout
+col_list = column_list()
+# With custom width ratios
+col1 = column(width_ratio=0.67)  # 2/3 width
+col2 = column(width_ratio=0.33)  # 1/3 width
+
+# Tables with formatted data
+tbl = table(table_width=4, has_column_header=True)
+rows = [
+    table_row([["Name"], ["Email"], ["Status"], ["Notes"]]),
+    table_row([["John"], ["john@ex.com"], ["Active"], ["VIP"]])
+]
+```
+
+### 🔬 Technical Content
+
+```python
+blocks = [
+    heading_2("Mathematical Proof"),
+    equation("\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}"),
+    paragraph("This demonstrates..."),
+    code("def solve(): return result", language="python"),
+    synced_block(children=[paragraph("Synced across pages!")])
+]
+```
+
+---
+
+## 📚 Complete Documentation
+
+### Quick Reference
+- **[QUICKSTART.md](./QUICKSTART.md)** - Get started in 5 minutes
+- **[PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)** - Detailed file structure
+- **[COMPLETION_SUMMARY.md](./COMPLETION_SUMMARY.md)** - What we've built
+
+### Block Types & API
+- **[COMPLETE_BLOCK_TYPES_REFERENCE.md](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)** ⭐ - All 30+ block types
+- **[ALL_BLOCK_TYPES_SHOWCASE.md](./docs/guides/ALL_BLOCK_TYPES_SHOWCASE.md)** - Visual examples
+- **[API_MIGRATION_2025-09-03.md](./docs/guides/API_MIGRATION_2025-09-03.md)** - API version guide
+
+### System Guides
+- **[COMPLETE_SYSTEM_GUIDE.md](./docs/guides/COMPLETE_SYSTEM_GUIDE.md)** - Full system overview
+- **[LINKEDIN_CONTENT_OS_GUIDE.md](./docs/guides/LINKEDIN_CONTENT_OS_GUIDE.md)** - LinkedIn system
+- **[UPDATE_SYSTEM_README.md](./docs/guides/UPDATE_SYSTEM_README.md)** - Update generator
+
+### MCP Server
+- **[MCP_SERVER_README.md](./docs/mcp/MCP_SERVER_README.md)** - Complete MCP guide
+- **[MCP_RESOURCES.md](./docs/mcp/MCP_RESOURCES.md)** - External resources
+- **[MCP_CONVERSION_COMPLETE.md](./docs/mcp/MCP_CONVERSION_COMPLETE.md)** - Implementation
+
+### AI Assistant
+- **[AGENTS.md](./docs/agents/AGENTS.md)** - AI assistant rules and commands
+
+---
+
+## 📊 By The Numbers
+
+### Block Type Library
+- **30+ block types** fully implemented
+- **27 helper functions** ready to use
+- **100% API parity** with Notion 2025-09-03
+- **50+ code examples** in documentation
+
+### Ready-to-Deploy Systems
+- **2 complete systems** (AI PM OS + LinkedIn OS)
+- **12 pages** with rich content
+- **9 databases** with comprehensive examples
+- **300+ content blocks** pre-built
+
+### MCP Server
+- **12 knowledge prompts** (complete documentation)
+- **15 callable tools** (Notion + research + analysis)
+- **Production-ready** for Claude Desktop
+
+### Documentation
+- **1,400+ lines** of code added
+- **900+ lines** of documentation
+- **15+ comprehensive guides**
+- **Full API coverage** documented
+
+---
+
+## ✨ Key Features
+
+### Production-Ready Code
+- ✅ All block types validated against official API
+- ✅ Type hints and docstrings throughout
+- ✅ Error handling and logging
+- ✅ Backward compatible with API updates
+
+### Comprehensive Examples
+- ✅ Every database includes detailed examples
+- ✅ Step-by-step workflows built-in
+- ✅ Best practices demonstrated
+- ✅ Ready to use or customize
+
+### Developer-Friendly
+- ✅ Clean, organized project structure
+- ✅ Extensive documentation with code examples
+- ✅ Easy-to-extend architecture
+- ✅ Well-commented code
+
+### AI Assistant Integration
+- ✅ MCP server for Claude Desktop
+- ✅ Complete project knowledge accessible to AI
+- ✅ Callable tools for automation
+- ✅ Prompt library included
+
+---
+
+## 🎯 Use Cases
+
+### For Developers
+- Build custom Notion integrations
+- Automate workspace setup
+- Create template marketplaces
+- Generate documentation programmatically
+
+### For Product Managers
+- Deploy AI PM OS for product workflow
+- Track opportunities and experiments
+- Manage launches and growth initiatives
+- Create product specifications
+
+### For Content Creators
+- Deploy LinkedIn Content OS
+- Manage content pipeline
+- Track performance metrics
+- Build content strategy
+
+### For Businesses
+- Automate workspace provisioning
+- Create team templates
+- Build internal tools
+- Integrate with existing systems
+
+---
+
+## 🔐 Security Best Practices
+
+- ✅ Never commit `.env` files to version control
+- ✅ Rotate API keys regularly
+- ✅ Use workspace-specific integrations
+- ✅ Review integration permissions
+- ✅ Keep dependencies updated
+
+---
+
+## 📖 Learning Resources
+
+### Start Here
+1. [QUICKSTART.md](./QUICKSTART.md) - Get running in 5 minutes
+2. [COMPLETE_BLOCK_TYPES_REFERENCE.md](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md) - Learn all block types
+3. [COMPLETE_SYSTEM_GUIDE.md](./docs/guides/COMPLETE_SYSTEM_GUIDE.md) - Understand the systems
+
+### Go Deeper
+- Deploy a complete system and explore the code
+- Read the block types showcase
+- Try building your own pages with the library
+- Set up the MCP server with Claude
+
+### External Resources
+- [Notion API Documentation](https://developers.notion.com)
+- [Notion SDK for Python](https://github.com/ramnes/notion-sdk-py)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+---
+
+## 🆕 Latest Updates
+
+**October 5, 2025**
+- ✅ Complete block type implementation (30+ types)
+- ✅ Upgraded to Notion API 2025-09-03
+- ✅ Full MCP server with 12 prompts + 15 tools
+- ✅ Reorganized project structure
+- ✅ Comprehensive documentation (900+ lines)
+- ✅ Production-ready for all use cases
+
+**[See Detailed Changelog →](./COMPLETION_SUMMARY.md)**
+
+---
+
+## 🤝 Contributing
+
+This is a personal automation project, but you're welcome to:
+- Fork and adapt for your needs
+- Submit issues for bugs
+- Share your implementations
+- Suggest improvements
+
+---
+
+## 📝 License
+
+MIT License - Free to use for personal and commercial projects.
+
+---
+
+## 🎉 Get Started Now
 
 ```bash
-# 1. Setup (one time)
+# 1. Setup
 cd notion_template_generator
 ./setup.sh
 
 # 2. Configure
-# Edit .env with your Notion API key and parent page ID
+cp .env.example .env
+# Edit .env with your Notion API key and page ID
 
-# 3. Create your system
+# 3. Deploy a system
 source venv/bin/activate
-python linkedin_content_os_complete.py
+python scripts/generators/linkedin_content_os_complete.py
 
-# 4. Open Notion and explore!
+# 4. Or use the library
+python
+>>> from notion_api_client import heading_1, callout, image
+>>> # Start building!
 ```
 
-**Created with ❤️ for Product Managers and Content Creators**
+**Questions?** Check out the [documentation](./docs/guides/README.md) or explore the [code examples](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md).
+
+---
+
+**Created with ❤️ for Developers, Product Managers, and Content Creators**
+
+*Making Notion automation accessible to everyone.*
