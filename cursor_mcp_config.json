@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "notion-template-generator": {
+      "command": "/Users/tatiana/Cloning me/notion_template_generator/venv/bin/python",
+      "args": [
+        "/Users/tatiana/Cloning me/notion_template_generator/mcp_server.py"
+      ]
+    }
+  }
+}

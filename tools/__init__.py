@@ -12,8 +12,17 @@ from .notion_tool import (
     get_database_schema
 )
 from .research_tool import search_web, analyze_content
-from .update_tool import generate_multi_format_update
-from .database_tool import analyze_database, enhance_database
+from .update_tool import (
+    generate_multi_format_update,
+    create_update_template,
+    validate_update_data
+)
+from .database_tool import (
+    analyze_database,
+    enhance_database,
+    export_database_structure,
+    compare_databases
+)
 
 __all__ = [
     # Notion tools
@@ -26,9 +35,13 @@ __all__ = [
     'analyze_content',
     # Update tools
     'generate_multi_format_update',
+    'create_update_template',
+    'validate_update_data',
     # Database tools
     'analyze_database',
     'enhance_database',
+    'export_database_structure',
+    'compare_databases',
 ]
 
 __version__ = '1.0.0'
