@@ -1,6 +1,8 @@
 # Notion Template Generator
 
-A comprehensive Python automation tool for programmatically creating complete Notion systems via the Notion API. Supports **all 15 major Notion block types** including callouts, code blocks, toggles, to-dos, and more!
+A comprehensive Python automation tool for programmatically creating complete Notion systems via the Notion API. Supports **all 30+ Notion block types** including text, lists, media (images/video/audio), tables, columns, equations, embeds, and more!
+
+**✨ NEW:** Complete block type implementation with full API parity! [See all block types →](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)
 
 ## 🆕 New: Multi-Format Update Generator
 
@@ -86,6 +88,39 @@ This generator creates two complete Notion systems:
 - **📊 Weekly Review**: Track analytics and growth
 
 **Total**: 12 pages, 5 databases, 300+ rich content blocks created!
+
+## 🎨 Complete Block Type Support
+
+Create rich Notion pages with **all 30+ block types**:
+
+### Text & Lists
+- Headings (3 levels, toggleable), Paragraphs, Quotes, Callouts
+- Bulleted/Numbered lists, To-dos, Toggles
+
+### Media & Files
+- Images, Videos, Audio, PDFs, Files
+- Bookmarks, Embeds
+
+### Advanced
+- Tables with rows/columns, Multi-column layouts
+- LaTeX Equations, Synced blocks
+- Table of Contents, Dividers, Breadcrumbs
+
+**[📖 Complete Block Types Reference →](./docs/guides/COMPLETE_BLOCK_TYPES_REFERENCE.md)**
+
+Example usage:
+```python
+from notion_api_client import heading_1, image, callout, table, code
+
+blocks = [
+    heading_1("My Project"),
+    image("https://example.com/photo.jpg", caption="Screenshot"),
+    callout("Important note!", icon="💡", color="blue_background"),
+    code("print('Hello!')", language="python")
+]
+
+client.append_blocks(page_id, blocks)
+```
 
 ## 📋 Prerequisites
 
