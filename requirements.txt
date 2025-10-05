@@ -1,8 +1,26 @@
-# Notion API SDK
-notion-client==2.2.1
+# Notion Template Generator MCP - Enhanced Requirements
+# Core MCP and Notion dependencies
+mcp>=1.0.0
+notion-client>=2.2.1
+python-dotenv>=1.0.0
 
-# Environment variable management
-python-dotenv==1.0.0
+# Enhanced functionality
+openai>=1.0.0
+sentence-transformers>=2.2.2
+scikit-learn>=1.3.0
+numpy>=1.24.0
 
-# Optional: Enhanced JSON handling
-# requests==2.31.0
+# Web research and content analysis
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Data processing and analysis
+pandas>=2.0.0
+aiofiles>=23.0.0
+
+# Development and testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Optional: For advanced features
+groq>=0.4.0  # For alternative LLM support
