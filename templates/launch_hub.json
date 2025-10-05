@@ -1,0 +1,136 @@
+{
+  "template_name": "Launch & Growth Hub",
+  "description": "A database for managing product launches and growth initiatives",
+  "icon": "🚀",
+  "properties": {
+    "Name": {
+      "type": "title",
+      "description": "Launch or initiative name"
+    },
+    "Phase": {
+      "type": "select",
+      "options": [
+        "Planning",
+        "Pre-Launch",
+        "Launch",
+        "Post-Launch",
+        "Growth",
+        "Optimization"
+      ]
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Not Started",
+        "In Progress",
+        "Blocked",
+        "Complete",
+        "On Hold"
+      ]
+    },
+    "Launch Date": {
+      "type": "date",
+      "description": "Target or actual launch date"
+    },
+    "Channel": {
+      "type": "multi_select",
+      "options": [
+        "Product Hunt",
+        "LinkedIn",
+        "Twitter",
+        "Email",
+        "Blog",
+        "Paid Ads",
+        "Partnerships",
+        "Community",
+        "PR"
+      ]
+    },
+    "Target Audience": {
+      "type": "text",
+      "description": "Who are we targeting?"
+    },
+    "Goal": {
+      "type": "text",
+      "description": "What are we trying to achieve?"
+    },
+    "Key Metrics": {
+      "type": "text",
+      "description": "Metrics to track"
+    },
+    "Budget": {
+      "type": "number",
+      "description": "Budget allocated (if applicable)"
+    },
+    "Owner": {
+      "type": "people",
+      "description": "Launch owner"
+    },
+    "Stakeholders": {
+      "type": "people",
+      "description": "Key stakeholders"
+    },
+    "Linked Product": {
+      "type": "relation",
+      "description": "Link to Product Spec"
+    },
+    "Created": {
+      "type": "created_time"
+    },
+    "Last Edited": {
+      "type": "last_edited_time"
+    }
+  },
+  "page_template": {
+    "sections": [
+      {
+        "heading": "Launch Strategy",
+        "fields": [
+          "Target Audience",
+          "Value Proposition",
+          "Key Messages",
+          "Positioning"
+        ]
+      },
+      {
+        "heading": "Marketing Assets",
+        "fields": [
+          "Landing Page",
+          "Email Sequences",
+          "Social Media Posts",
+          "Blog Posts",
+          "Press Kit"
+        ]
+      },
+      {
+        "heading": "Channel Plan",
+        "fields": [
+          "Channel Strategy",
+          "Content Calendar",
+          "Budget Allocation",
+          "Timeline"
+        ]
+      },
+      {
+        "heading": "Metrics & Results",
+        "fields": [
+          "Traffic",
+          "Conversions",
+          "Sign-ups",
+          "Revenue",
+          "Engagement",
+          "ROI"
+        ]
+      },
+      {
+        "heading": "Learnings",
+        "fields": [
+          "What Worked",
+          "What Didn't Work",
+          "Surprises",
+          "Next Steps"
+        ]
+      }
+    ]
+  }
+}

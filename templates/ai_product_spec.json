@@ -1,0 +1,104 @@
+{
+  "template_name": "AI Product Spec Generator",
+  "description": "A structured database for creating AI-powered product specifications",
+  "icon": "📋",
+  "properties": {
+    "Name": {
+      "type": "title",
+      "description": "Product or feature name"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Draft",
+        "In Review",
+        "Approved",
+        "In Development",
+        "Shipped",
+        "Archived"
+      ]
+    },
+    "Owner": {
+      "type": "people",
+      "description": "Product owner or PM"
+    },
+    "Stakeholders": {
+      "type": "people",
+      "description": "Key stakeholders to review"
+    },
+    "Target Release": {
+      "type": "date",
+      "description": "Planned release date"
+    },
+    "Linked Opportunity": {
+      "type": "relation",
+      "description": "Link to Opportunity Hub entry"
+    },
+    "PRD Status": {
+      "type": "select",
+      "options": [
+        "Not Started",
+        "In Progress",
+        "Complete"
+      ]
+    },
+    "Created": {
+      "type": "created_time"
+    },
+    "Last Edited": {
+      "type": "last_edited_time"
+    }
+  },
+  "page_template": {
+    "sections": [
+      {
+        "heading": "Overview",
+        "subsections": [
+          "Problem Statement",
+          "Solution",
+          "Success Metrics"
+        ]
+      },
+      {
+        "heading": "User Research",
+        "subsections": [
+          "Target Users",
+          "User Needs",
+          "Pain Points"
+        ]
+      },
+      {
+        "heading": "Product Requirements",
+        "subsections": [
+          "Functional Requirements",
+          "Non-Functional Requirements",
+          "Out of Scope"
+        ]
+      },
+      {
+        "heading": "Design & UX",
+        "subsections": [
+          "User Flows",
+          "Mockups",
+          "Design Considerations"
+        ]
+      },
+      {
+        "heading": "Technical Approach",
+        "subsections": [
+          "Architecture",
+          "Dependencies",
+          "Technical Risks"
+        ]
+      },
+      {
+        "heading": "Launch Plan",
+        "subsections": [
+          "Rollout Strategy",
+          "Success Criteria",
+          "Metrics Dashboard"
+        ]
+      }
+    ]
+  }
+}

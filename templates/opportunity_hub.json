@@ -1,0 +1,78 @@
+{
+  "template_name": "Opportunity Hub",
+  "description": "A database for tracking and evaluating product opportunities",
+  "icon": "🎯",
+  "properties": {
+    "Name": {
+      "type": "title",
+      "description": "Name of the opportunity"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Backlog",
+        "Evaluating",
+        "Ready",
+        "In Progress",
+        "Shipped",
+        "Archived"
+      ]
+    },
+    "Priority": {
+      "type": "select",
+      "options": [
+        "P0 - Critical",
+        "P1 - High",
+        "P2 - Medium",
+        "P3 - Low"
+      ]
+    },
+    "Impact Score": {
+      "type": "number",
+      "description": "Expected impact on users or business (1-10)"
+    },
+    "Effort Score": {
+      "type": "number",
+      "description": "Estimated effort required (1-10)"
+    },
+    "Target User": {
+      "type": "text",
+      "description": "Who is this for?"
+    },
+    "Problem Statement": {
+      "type": "text",
+      "description": "What problem does this solve?"
+    },
+    "Success Metrics": {
+      "type": "text",
+      "description": "How will we measure success?"
+    },
+    "Owner": {
+      "type": "people",
+      "description": "Who owns this opportunity?"
+    },
+    "Created": {
+      "type": "created_time"
+    },
+    "Last Edited": {
+      "type": "last_edited_time"
+    }
+  },
+  "views": [
+    {
+      "name": "All Opportunities",
+      "type": "table",
+      "filter": null
+    },
+    {
+      "name": "By Priority",
+      "type": "board",
+      "group_by": "Priority"
+    },
+    {
+      "name": "By Status",
+      "type": "board",
+      "group_by": "Status"
+    }
+  ]
+}

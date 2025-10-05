@@ -1,0 +1,107 @@
+{
+  "template_name": "Experiment Tracker",
+  "description": "A database for planning, tracking, and analyzing experiments",
+  "icon": "🧪",
+  "properties": {
+    "Name": {
+      "type": "title",
+      "description": "Experiment name"
+    },
+    "Status": {
+      "type": "select",
+      "options": [
+        "Planning",
+        "Running",
+        "Analyzing",
+        "Completed",
+        "Cancelled"
+      ]
+    },
+    "Hypothesis": {
+      "type": "text",
+      "description": "What do we believe will happen?"
+    },
+    "Success Metric": {
+      "type": "text",
+      "description": "Primary metric to measure"
+    },
+    "Target Improvement": {
+      "type": "text",
+      "description": "Expected % improvement"
+    },
+    "Start Date": {
+      "type": "date",
+      "description": "When the experiment starts"
+    },
+    "End Date": {
+      "type": "date",
+      "description": "When the experiment ends"
+    },
+    "Duration": {
+      "type": "formula",
+      "formula": "dateBetween(prop('End Date'), prop('Start Date'), 'days')"
+    },
+    "Result": {
+      "type": "select",
+      "options": [
+        "Success",
+        "Partial Success",
+        "Failed",
+        "Inconclusive"
+      ]
+    },
+    "Actual Improvement": {
+      "type": "number",
+      "description": "Actual % improvement observed"
+    },
+    "Sample Size": {
+      "type": "number",
+      "description": "Number of users in the experiment"
+    },
+    "Owner": {
+      "type": "people",
+      "description": "Experiment owner"
+    },
+    "Linked Product": {
+      "type": "relation",
+      "description": "Link to Product Spec"
+    },
+    "Created": {
+      "type": "created_time"
+    },
+    "Last Edited": {
+      "type": "last_edited_time"
+    }
+  },
+  "page_template": {
+    "sections": [
+      {
+        "heading": "Experiment Design",
+        "fields": [
+          "Hypothesis",
+          "Variables to Test",
+          "Control Group",
+          "Treatment Group(s)"
+        ]
+      },
+      {
+        "heading": "Metrics & Goals",
+        "fields": [
+          "Primary Metric",
+          "Secondary Metrics",
+          "Success Criteria",
+          "Statistical Significance Target"
+        ]
+      },
+      {
+        "heading": "Results",
+        "fields": [
+          "Observed Results",
+          "Statistical Significance",
+          "Learnings",
+          "Next Steps"
+        ]
+      }
+    ]
+  }
+}

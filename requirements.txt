@@ -1,0 +1,8 @@
+# Notion API SDK
+notion-client==2.2.1
+
+# Environment variable management
+python-dotenv==1.0.0
+
+# Optional: Enhanced JSON handling
+# requests==2.31.0

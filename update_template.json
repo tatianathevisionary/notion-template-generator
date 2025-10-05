@@ -1,0 +1,73 @@
+{
+  "_instructions": "Fill out this template with your weekly update information, then run: python update_generator.py update_template.json",
+  
+  "project_name": "Your Project Name",
+  "date": "2025-10-05",
+  
+  "status": "on_track",
+  "_status_options": "on_track | at_risk | off_track",
+  
+  "highlight": "The single most important accomplishment from this week",
+  "next_priority": "The #1 priority for the upcoming week",
+  
+  "progress": [
+    "Accomplishment 1 - Be specific and link to previous goals",
+    "Accomplishment 2 - Use action verbs (Built, Shipped, Completed, Created)",
+    "Accomplishment 3 - Include impact/metrics where possible"
+  ],
+  
+  "goals": [
+    "Priority 1 for next week",
+    "Priority 2 for next week",
+    "Priority 3 for next week"
+  ],
+  
+  "metrics": [
+    {
+      "name": "Metric Name",
+      "value": "100",
+      "change": "+10% WoW"
+    },
+    {
+      "name": "Another Metric",
+      "value": "50",
+      "change": "+5"
+    }
+  ],
+  
+  "risks": [
+    {
+      "type": "risk",
+      "description": "Description of a potential risk that could impact the project"
+    },
+    {
+      "type": "blocker",
+      "description": "Description of a current obstacle that is blocking progress"
+    }
+  ],
+  
+  "decisions": [
+    "Key decision 1 - Why we chose this approach over alternatives",
+    "Key decision 2 - What we decided to build/change/postpone"
+  ],
+  
+  "learnings": [
+    "Important insight 1 - What we discovered this week",
+    "Important insight 2 - What surprised us or changed our understanding"
+  ],
+  
+  "asks": [
+    "Specific help needed from leadership/team",
+    "Resource or decision needed to unblock progress"
+  ],
+  
+  "_tips": {
+    "progress": "Focus on outcomes, not activities. 'Shipped feature X' not 'Worked on feature X'",
+    "goals": "Keep to 3-5 items. If you have more, prioritize ruthlessly",
+    "metrics": "Include week-over-week change to show momentum",
+    "risks": "Be transparent. Surface problems early",
+    "decisions": "Document the 'why' for future reference",
+    "learnings": "These become your knowledge base. Be specific",
+    "asks": "Make requests actionable. What exactly do you need?"
+  }
+}
