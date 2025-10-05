@@ -542,3 +542,349 @@ def bookmark(url: str, caption: str = "") -> Dict[str, Any]:
             "caption": caption_array
         }
     }
+
+
+def image(url: str, caption: str = "", is_external: bool = True) -> Dict[str, Any]:
+    """
+    Create an image block.
+    
+    Args:
+        url: URL of the image (external) or file upload ID
+        caption: Optional caption for the image
+        is_external: True for external URL, False for file upload
+    
+    Supported external types: .bmp, .gif, .heic, .jpeg, .jpg, .png, .svg, .tif, .tiff
+    """
+    caption_array = [{"type": "text", "text": {"content": caption}}] if caption else []
+    
+    if is_external:
+        return {
+            "object": "block",
+            "type": "image",
+            "image": {
+                "type": "external",
+                "external": {"url": url},
+                "caption": caption_array
+            }
+        }
+    else:
+        # For file uploads
+        return {
+            "object": "block",
+            "type": "image",
+            "image": {
+                "type": "file_upload",
+                "file_upload": {"id": url},  # url is actually the file_upload_id here
+                "caption": caption_array
+            }
+        }
+
+
+def video(url: str, caption: str = "", is_external: bool = True) -> Dict[str, Any]:
+    """
+    Create a video block.
+    
+    Args:
+        url: URL of the video or file upload ID
+        caption: Optional caption for the video
+        is_external: True for external URL, False for file upload
+    
+    Supported types: .mp4, .mov, .avi, .mkv, .wmv, YouTube/Vimeo URLs
+    """
+    caption_array = [{"type": "text", "text": {"content": caption}}] if caption else []
+    
+    if is_external:
+        return {
+            "object": "block",
+            "type": "video",
+            "video": {
+                "type": "external",
+                "external": {"url": url},
+                "caption": caption_array
+            }
+        }
+    else:
+        return {
+            "object": "block",
+            "type": "video",
+            "video": {
+                "type": "file_upload",
+                "file_upload": {"id": url},
+                "caption": caption_array
+            }
+        }
+
+
+def audio(url: str, caption: str = "", is_external: bool = True) -> Dict[str, Any]:
+    """
+    Create an audio block.
+    
+    Args:
+        url: URL of the audio file or file upload ID
+        caption: Optional caption for the audio
+        is_external: True for external URL, False for file upload
+    
+    Supported types: .mp3, .wav, .ogg, .oga, .m4a
+    """
+    caption_array = [{"type": "text", "text": {"content": caption}}] if caption else []
+    
+    if is_external:
+        return {
+            "object": "block",
+            "type": "audio",
+            "audio": {
+                "type": "external",
+                "external": {"url": url},
+                "caption": caption_array
+            }
+        }
+    else:
+        return {
+            "object": "block",
+            "type": "audio",
+            "audio": {
+                "type": "file_upload",
+                "file_upload": {"id": url},
+                "caption": caption_array
+            }
+        }
+
+
+def file(url: str, name: str = "", caption: str = "", is_external: bool = True) -> Dict[str, Any]:
+    """
+    Create a file block.
+    
+    Args:
+        url: URL of the file or file upload ID
+        name: Name of the file as displayed in Notion
+        caption: Optional caption for the file
+        is_external: True for external URL, False for file upload
+    """
+    caption_array = [{"type": "text", "text": {"content": caption}}] if caption else []
+    
+    if is_external:
+        return {
+            "object": "block",
+            "type": "file",
+            "file": {
+                "type": "external",
+                "external": {"url": url},
+                "caption": caption_array,
+                "name": name
+            }
+        }
+    else:
+        return {
+            "object": "block",
+            "type": "file",
+            "file": {
+                "type": "file_upload",
+                "file_upload": {"id": url},
+                "caption": caption_array,
+                "name": name
+            }
+        }
+
+
+def pdf(url: str, caption: str = "", is_external: bool = True) -> Dict[str, Any]:
+    """
+    Create a PDF block.
+    
+    Args:
+        url: URL of the PDF file or file upload ID
+        caption: Optional caption for the PDF
+        is_external: True for external URL, False for file upload
+    """
+    caption_array = [{"type": "text", "text": {"content": caption}}] if caption else []
+    
+    if is_external:
+        return {
+            "object": "block",
+            "type": "pdf",
+            "pdf": {
+                "type": "external",
+                "external": {"url": url},
+                "caption": caption_array
+            }
+        }
+    else:
+        return {
+            "object": "block",
+            "type": "pdf",
+            "pdf": {
+                "type": "file_upload",
+                "file_upload": {"id": url},
+                "caption": caption_array
+            }
+        }
+
+
+def embed(url: str) -> Dict[str, Any]:
+    """
+    Create an embed block for embedding external content.
+    
+    Args:
+        url: URL to embed (website, service, etc.)
+    
+    Note: Notion uses iFramely for validation. Not all URLs may render correctly.
+    """
+    return {
+        "object": "block",
+        "type": "embed",
+        "embed": {
+            "url": url
+        }
+    }
+
+
+def breadcrumb() -> Dict[str, Any]:
+    """Create a breadcrumb block (navigation trail)."""
+    return {
+        "object": "block",
+        "type": "breadcrumb",
+        "breadcrumb": {}
+    }
+
+
+def table(table_width: int, has_column_header: bool = False, has_row_header: bool = False) -> Dict[str, Any]:
+    """
+    Create a table block.
+    
+    Args:
+        table_width: Number of columns (cannot be changed after creation)
+        has_column_header: Whether first row is a header
+        has_row_header: Whether first column is a header
+    
+    Note: Must be created with at least one table_row child.
+    """
+    return {
+        "object": "block",
+        "type": "table",
+        "table": {
+            "table_width": table_width,
+            "has_column_header": has_column_header,
+            "has_row_header": has_row_header
+        }
+    }
+
+
+def table_row(cells: List[List[str]]) -> Dict[str, Any]:
+    """
+    Create a table row block.
+    
+    Args:
+        cells: List of cell contents (strings). Length must match table_width.
+               Each cell can contain multiple text objects.
+    
+    Example:
+        table_row([["Cell 1"], ["Cell 2"], ["Cell 3"]])
+    """
+    formatted_cells = []
+    for cell in cells:
+        # Convert each cell (list of strings) to rich text objects
+        rich_text_array = []
+        for text in cell:
+            rich_text_array.append({
+                "type": "text",
+                "text": {"content": text}
+            })
+        formatted_cells.append(rich_text_array)
+    
+    return {
+        "object": "block",
+        "type": "table_row",
+        "table_row": {
+            "cells": formatted_cells
+        }
+    }
+
+
+def column_list() -> Dict[str, Any]:
+    """
+    Create a column list block (container for columns).
+    
+    Note: Must have at least 2 column children when created.
+    """
+    return {
+        "object": "block",
+        "type": "column_list",
+        "column_list": {}
+    }
+
+
+def column(width_ratio: Optional[float] = None) -> Dict[str, Any]:
+    """
+    Create a column block (must be child of column_list).
+    
+    Args:
+        width_ratio: Optional width ratio (0-1). When omitted, equal widths are used.
+                    All columns in a list should add up to 1.
+    
+    Note: Columns can contain any block type except other columns.
+    """
+    column_obj = {}
+    if width_ratio is not None:
+        column_obj["width_ratio"] = width_ratio
+    
+    return {
+        "object": "block",
+        "type": "column",
+        "column": column_obj
+    }
+
+
+def equation(expression: str) -> Dict[str, Any]:
+    """
+    Create an equation block using KaTeX syntax.
+    
+    Args:
+        expression: LaTeX/KaTeX equation expression
+    
+    Example:
+        equation("e=mc^2")
+        equation("\\frac{a}{b}")
+    """
+    return {
+        "object": "block",
+        "type": "equation",
+        "equation": {
+            "expression": expression
+        }
+    }
+
+
+def synced_block(block_id: Optional[str] = None, children: Optional[List[Dict[str, Any]]] = None) -> Dict[str, Any]:
+    """
+    Create a synced block.
+    
+    Args:
+        block_id: If provided, creates a duplicate synced to the original block.
+                 If None, creates an original synced block.
+        children: Child blocks (only for original synced blocks)
+    
+    Note: Original must be created before duplicates.
+    """
+    if block_id:
+        # Duplicate synced block
+        return {
+            "object": "block",
+            "type": "synced_block",
+            "synced_block": {
+                "synced_from": {
+                    "type": "block_id",
+                    "block_id": block_id
+                }
+            }
+        }
+    else:
+        # Original synced block
+        block = {
+            "object": "block",
+            "type": "synced_block",
+            "synced_block": {
+                "synced_from": None
+            }
+        }
+        if children:
+            block["synced_block"]["children"] = children
+        return block
