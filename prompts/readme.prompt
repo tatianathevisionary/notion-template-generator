@@ -22,50 +22,6 @@ python update_generator.py my_update.json
 
 ---
 
-## 🤖 New: MCP Server for AI Assistants
-
-This project now includes a **Model Context Protocol (MCP) server** that enables AI assistants like Claude Desktop to access all project knowledge and capabilities!
-
-**What is MCP?** An open standard by Anthropic that connects AI assistants to external tools and data sources.
-
-### Quick Setup
-
-```bash
-# Install MCP dependencies
-pip install -r requirements_mcp.txt
-
-# Run the server
-python mcp_server.py
-```
-
-### Connect to Claude Desktop
-
-Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "notion-template-generator": {
-      "command": "python",
-      "args": ["/absolute/path/to/mcp_server.py"],
-      "env": {
-        "NOTION_API_KEY": "your_key",
-        "NOTION_PARENT_PAGE_ID": "your_page_id"
-      }
-    }
-  }
-}
-```
-
-### Capabilities
-
-- **12 Prompts** - Complete project knowledge base
-- **15 Tools** - Notion operations, database analysis, update generation, web research
-
-**[📖 Full MCP Documentation](MCP_SERVER_README.md)** | **[🔗 MCP Resources](MCP_RESOURCES.md)**
-
----
-
 ## 🎯 What This Creates
 
 This generator creates two complete Notion systems:
